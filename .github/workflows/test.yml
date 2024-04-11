@@ -1,0 +1,11 @@
+name: autopin self-test
+on: push
+permissions:
+  contents: read
+jobs:
+  autopin:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ./
+    - uses: chainguard-dev/digestabot@v1
+    
