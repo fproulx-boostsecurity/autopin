@@ -1,0 +1,8 @@
+name: autopin
+runs:
+  using: composite
+  steps:
+  - run: |
+    CURRENT_WORKFLOW_PATH=$(echo "$GITHUB_WORKFLOW_REF" | sed -E 's@.*/\.github/(.*)@refs/heads/.*@\1@')
+    LOCK_FILE_CONTENTS=$(gh api /repos/${GITHUB_REPOSITORY}/contents/${CURRENT_WORKFLOW_PATH}.lock | jq -r .content | base64 --decode)
+    echo "${LOCK_FILE_CONTENTS}"
