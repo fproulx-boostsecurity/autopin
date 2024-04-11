@@ -1,4 +1,4 @@
-name: autopin
+name: pinning the unpinnable
 runs:
   using: composite
   steps:
