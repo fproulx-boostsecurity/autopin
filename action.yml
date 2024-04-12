@@ -4,6 +4,7 @@ runs:
   steps:
   - id: pin
     name: Pin it plz
+    shell: bash
     run: |
       ls -lah /home/runner/work/_actions/
       
