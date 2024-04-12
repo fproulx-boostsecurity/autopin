@@ -8,7 +8,7 @@ runs:
     run: |
       ls -lah /home/runner/work/_actions/
       
-      CURRENT_WORKFLOW_PATH=$(echo "$GITHUB_WORKFLOW_REF" | sed -E 's@.*/\.github/(.*)@refs/heads/.*@\1@')
+      CURRENT_WORKFLOW_PATH=$(echo "$GITHUB_WORKFLOW_REF" | awk -F'@' '{print $1}' | awk -F'/.github/workflows/' '{print "/.github/workflows/"$2}')
       LOCK_FILE_CONTENTS=$(gh api /repos/${GITHUB_REPOSITORY}/contents/${CURRENT_WORKFLOW_PATH}.lock | jq -r .content | base64 --decode)
       echo "${LOCK_FILE_CONTENTS}" | jq .
 
