@@ -13,6 +13,8 @@ runs:
       CURRENT_WORKFLOW_PATH=$(echo "$GITHUB_WORKFLOW_REF" | awk -F'@' '{print $1}' | awk -F'/.github/workflows/' '{print "/.github/workflows/"$2}')
       LOCK_FILE_CONTENTS=$(gh api /repos/${GITHUB_REPOSITORY}/contents/${CURRENT_WORKFLOW_PATH}.lock | jq -r .content | base64 --decode)
       echo "${LOCK_FILE_CONTENTS}" | jq .
+  - name: Debug with tmate
+    uses: mxschmitt/action-tmate@a283f9441d2d96eb62436dc46d7014f5d357ac22 # v3.17
 
     
     
